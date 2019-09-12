@@ -75,20 +75,19 @@ class QueryResult
             return true;
         }
 
-        $f = __DIR__ . '/../../../../web/sites/default/files/mra.txt';
         $s = '---------';
         if ($a) {
           $s .= " $a";
         }
-        $s .= "\n";
-        $s .= "Is object: " . var_export($this->isObject(), TRUE) . "\n";
-        $s .= "Is array: " . var_export($this->isArray(), TRUE) . "\n";
-        $s .= "Parameter exists: " . var_export($this->parameterExists('result'), TRUE) . "\n";
-        $s .= "Response:\n";
-        $s .= print_r($this->getResponse(), TRUE) . "\n";
-        $s .= "---------\n";
+        $s .= "<br/>";
+        $s .= "Is object: " . var_export($this->isObject(), TRUE) . "<br/>";
+        $s .= "Is array: " . var_export($this->isArray(), TRUE) . "<br/>";
+        $s .= "Parameter exists: " . var_export($this->parameterExists('result'), TRUE) . "<br/>";
+        $s .= "Response:<br/>";
+        $s .= print_r($this->getResponse(), TRUE) . "<br/>";
+        $s .= "---------<br/><br/>\n";
 
-        file_put_contents($f, $s, FILE_APPEND);
+        \Drupal::state()->set('foo', $s);
 
         // If an error occurs the Matomo server still returns a 200 OK response,
         // but the body of the response will contain the string "error" in the
